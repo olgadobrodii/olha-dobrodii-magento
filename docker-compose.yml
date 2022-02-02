@@ -1,5 +1,5 @@
 # SSL certificates for development
-# $ mkcert -cert-file=olha-dobrodii-magento.local+1.pem -key-file=olha-dobrodii-magento.local+1-key.pem olha-dobrodii-magento.local www.olha-dobrodii-magento.local
+# $ mkcert -cert-file=olha-dobrodii-magento.local+3.pem -key-file=olha-dobrodii-magento.local+3-key.pem olha-dobrodii-magento.local www.olha-dobrodii-magento.local olha-dobrodii-magento.us www.olha-dobrodii-magento.us
 #
 # Start composition:
 # $ docker-compose up -d
@@ -27,13 +27,13 @@ services:
     labels:
       - traefik.enable=true
       # HTTP
-      - traefik.http.routers.olha-dobrodii-magento-local-http.rule=Host(`olha-dobrodii-magento.local`,`www.olha-dobrodii-magento.local`)
+      - traefik.http.routers.olha-dobrodii-magento-local-http.rule=Host(`olha-dobrodii-magento.local`,`www.olha-dobrodii-magento.local`,`olha-dobrodii-magento.us`,`www.olha-dobrodii-magento.us`)
       - traefik.http.routers.olha-dobrodii-magento-local-http.entrypoints=http
       - traefik.http.routers.olha-dobrodii-magento-local-http.service=olha-dobrodii-magento-local-http
       - traefik.http.services.olha-dobrodii-magento-local-http.loadbalancer.server.port=80
       - traefik.http.services.olha-dobrodii-magento-local-http.loadbalancer.server.scheme=http
       # HTTPS
-      - traefik.http.routers.olha-dobrodii-magento-local-https.rule=Host(`olha-dobrodii-magento.local`,`www.olha-dobrodii-magento.local`)
+      - traefik.http.routers.olha-dobrodii-magento-local-https.rule=Host(`olha-dobrodii-magento.local`,`www.olha-dobrodii-magento.local`,`olha-dobrodii-magento.us`,`www.olha-dobrodii-magento.us`)
       - traefik.http.routers.olha-dobrodii-magento-local-https.entrypoints=https
       - traefik.http.routers.olha-dobrodii-magento-local-https.tls=true
       - traefik.http.routers.olha-dobrodii-magento-local-https.service=olha-dobrodii-magento-local-https
@@ -41,7 +41,7 @@ services:
       - traefik.http.services.olha-dobrodii-magento-local-https.loadbalancer.server.scheme=https
     # Must add extra_hosts to be written to /etc/hosts - otherwise containerized application can not curl itself
     extra_hosts:
-      - "olha-dobrodii-magento.local www.olha-dobrodii-magento.local:127.0.0.1"
+      - "olha-dobrodii-magento.local www.olha-dobrodii-magento.local olha-dobrodii-magento.us www.olha-dobrodii-magento.us:127.0.0.1"
       # Required for xDebug on Linux hosts till docker.host.internal is not available by default - https://github.com/docker/libnetwork/pull/2348/files
       - "host.docker.internal:172.17.0.1"
     links:
@@ -100,7 +100,6 @@ services:
 #        soft: -1
 #        hard: -1
 #    restart: always
-#    network_mode: bridge
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
     environment:
