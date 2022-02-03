@@ -121,6 +121,10 @@
 
     Options +FollowSymLinks
     RewriteEngine on
+    SetEnvIf Host .*olha-dobrodii-magento.local.* MAGE_RUN_CODE=default
+    SetEnvIf Host .*olha-dobrodii-magento.local.* MAGE_RUN_TYPE=store
+    SetEnvIf Host .*olha-dobrodii-magento.us.* MAGE_RUN_CODE=us_store_view
+    SetEnvIf Host .*olha-dobrodii-magento.us.* MAGE_RUN_TYPE=store
 
 ############################################
 ## You can put here your magento root folder
