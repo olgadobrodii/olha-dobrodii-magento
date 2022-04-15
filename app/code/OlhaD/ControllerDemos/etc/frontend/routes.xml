@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd"
+>
+    <router id="standard">
+        <route id="olhad_controllerdemo" frontName="olha-d-controller-demos">
+            <module name="OlhaD_ControllerDemos"/>
+        </route>
+    </router>
+</config>
+
+
+<!--
+@TODO  https://olha-dobrodii-magento.local/olha-d-controller-demos/responsecontroller/rawresponsedemo
+-->
+<!--
+@TODO  https://olha-dobrodii-magento.local/olha-d-controller-demos/responsecontroller/redirectresponsedemo
+ -->
+<!--
+@TODO  https://olha-dobrodii-magento.local/olha-d-controller-demos/responsecontroller/jsonresponsedemo
+-->
+<!--
+@TODO  https://olha-dobrodii-magento.local/olha-d-controller-demos/responsecontroller/forwardresponsedemo
+ -->
